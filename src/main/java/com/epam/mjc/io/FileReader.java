@@ -10,10 +10,10 @@ public class FileReader {
 
     public Profile getDataFromFile(File file) {
         // -----------
-        String fromTextName;
-        Integer fromTextAge;
-        String fromTextEmail;
-        Long fromTextNumber;
+        String fromTextName = "";
+        Integer fromTextAge = 0;
+        String fromTextEmail = "";
+        Long fromTextNumber = Long.valueOf(0);
         // -----------
         String[] constructor = new String[4];
         StringBuilder textInFile = new StringBuilder();
@@ -32,6 +32,36 @@ public class FileReader {
         String[] linesInFile;
         linesInFile = textInFile.toString().split("\r\n");
         for (int i = 0; i < linesInFile.length; i++) {
+            String[] temp = linesInFile[i].split(" ");
+            switch (temp[0]){
+                case "Name:":
+                    fromTextName = temp[1];
+                    break;
+                case "Age:":
+                    try {
+                        fromTextAge = Integer.valueOf(temp[1]);
+                    }
+                    catch (Exception e){
+                        fromTextAge = null;
+                    }
+                    break;
+                case "Email:":
+                    fromTextEmail = temp[1];
+                    break;
+                case "Phone:":
+                    try {
+                        fromTextNumber = Long.valueOf(temp[1]);
+                    }
+                    catch (Exception e){
+                        fromTextNumber = null;
+                    }
+
+            }
+            //constructor[i] = temp[1];
+        }
+        return new Profile(fromTextName,fromTextAge,fromTextEmail,fromTextNumber);
+        /*
+        * for (int i = 0; i < linesInFile.length; i++) {
             String[] temp = linesInFile[i].split(": ");
             constructor[i] = temp[1];
         }
@@ -49,6 +79,7 @@ public class FileReader {
         catch (Exception e){
             fromTextNumber = null;
         }
-        return new Profile(fromTextName,fromTextAge,fromTextEmail,fromTextNumber);
+        return new Profile(fromTextName,fromTextAge,fromTextEmail,fromTextNumber);*/
+        //return new Profile();
     }
 }

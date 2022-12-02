@@ -16,11 +16,11 @@ public class FileReader {
         Long fromTextNumber;
         // -----------
         String[] constructor = new String[4];
-        String textInFile = "";
+        StringBuilder textInFile = new StringBuilder();
         try (FileInputStream in = new FileInputStream(file)){
             int c;
             while ((c = in.read()) != -1){
-                textInFile += (char)c;
+                textInFile.append((char)c);
             }
         }
         catch (FileNotFoundException fe){
@@ -30,7 +30,7 @@ public class FileReader {
             return null;
         }
         String[] linesInFile;
-        linesInFile = textInFile.split("\r\n");
+        linesInFile = textInFile.toString().split("\r\n");
         for (int i = 0; i < linesInFile.length; i++) {
             String[] temp = linesInFile[i].split(": ");
             constructor[i] = temp[1];

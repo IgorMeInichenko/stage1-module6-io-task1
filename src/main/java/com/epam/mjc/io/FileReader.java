@@ -36,9 +36,19 @@ public class FileReader {
             constructor[i] = temp[1];
         }
         fromTextName = constructor[0];
-        fromTextAge = Integer.valueOf(constructor[1]);
+        try {
+            fromTextAge = Integer.valueOf(constructor[1]);
+        }
+        catch (Exception e){
+            fromTextAge = null;
+        }
         fromTextEmail = constructor[2];
-        fromTextNumber = Long.valueOf(constructor[3]);
+        try {
+            fromTextNumber = Long.valueOf(constructor[3]);
+        }
+        catch (Exception e){
+            fromTextNumber = null;
+        }
         return new Profile(fromTextName,fromTextAge,fromTextEmail,fromTextNumber);
     }
 }

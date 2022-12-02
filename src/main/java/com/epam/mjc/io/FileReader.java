@@ -53,6 +53,5 @@ public class FileReader {
             fromTextNumber = null;
         }
         return new Profile(fromTextName,fromTextAge,fromTextEmail,fromTextNumber);
-        //return new Profile();
     }
 }
